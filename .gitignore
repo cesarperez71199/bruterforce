@@ -2,6 +2,8 @@ import requests
 import sys
 import time 
 
+#Programa que simula un ataque pishing mediante una conexion con python
+
 url = input("Ingresar URL: ")
 username = input ("Ingresa el usuario: ")
 error= input("Ingresa el campo a descrifrar: ")
